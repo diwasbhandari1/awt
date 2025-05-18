@@ -1,0 +1,93 @@
+ 
+/* Basic layout */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #0d1b2a;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .all {
+    background-color: #1b263b;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    width: 300px;
+  }
+  
+  .display {
+    color: #e0e1dd;
+    padding: 20px;
+    text-align: right;
+    font-size: 2em;
+    background-color: #415a77;
+  }
+  
+  /* Keypad styles */
+  .keypad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .keypad button {
+    padding: 20px;
+    font-size: 1.2em;
+    border: 1px solid #1b263b;
+    background-color: #778da9;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Focus outline styles */
+  .keypad button:focus {
+    outline: none;
+  }
+  
+  .keypad button:focus-visible {
+    outline: 2px solid #f0f8ff; /* Alice Blue (light blue) */
+    outline-offset: 2px;
+  }
+  
+  /* Hover effect */
+  .keypad button:hover {
+    background-color: #a8c0d9;
+  }
+  
+  /* Operator styles */
+  .operator {
+    background-color: #1d3557;
+  }
+  
+  .operator:hover {
+    background-color: #457b9d;
+  }
+  
+  /* Special button styles (AC, C) */
+  .special {
+    background-color: #e63946;
+  }
+  
+  .special:hover {
+    background-color: #d62828;
+  }
+  
+  /* Equal button style */
+  .equal {
+    background-color: #2a9d8f;
+  }
+  
+  .equal:hover {
+    background-color: #21867a;
+  }
+  
+  Write to Rahul Jung Karki
+  
+  
+  
