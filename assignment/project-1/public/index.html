@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quotes List</title>
+  </head>
+  <body>
+    <h1>Quotes</h1>
+    <form id="quote-form">
+      <input type="text" id="quote" name="quote" placeholder="Quote" required />
+      <input
+        type="text"
+        id="author"
+        name="author"
+        placeholder="Author"
+        required
+      />
+      <button type="submit">Add Quote</button>
+    </form>
+    <ul id="quotes-list"></ul>
+    <script>
+      async function fetchQuotes() {
+        try {
+          const response = await fetch("/api/quotes")
+          const quotes = await response.json()
+          const list = document.getElementById("quotes-list")
+          list.innerHTML = ""
+          quotes.forEach((q) => {
+            const li = document.createElement("li")
+            li.textContent = `"${q.quote}" — ${q.author}`
+            list.appendChild(li)
+          })
+        } catch (err) {
+          document.getElementById("quotes-list").innerHTML =
+            "<li>Failed to load quotes.</li>"
+        }
+      }
+
+      document
+        .getElementById("quote-form")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault()
+          const quote = document.getElementById("quote").value.trim()
+          const author = document.getElementById("author").value.trim()
+          if (!quote || !author) return
+          try {
+            const response = await fetch("/api/quotes", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ quote, author }),
+            })
+            if (response.ok) {
+              document.getElementById("quote-form").reset()
+              fetchQuotes()
+            } else {
+              alert("Failed to add quote.")
+            }
+          } catch (err) {
+            alert("Failed to add quote.")
+          }
+        })
+
+      fetchQuotes()
+    </script>
+  </body>
+</html>
